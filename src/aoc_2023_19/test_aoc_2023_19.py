@@ -1,4 +1,4 @@
-from src.aoc_2023_19.aoc_2023_19 import main
+from .aoc_2023_19 import main
 
 def test_main():
     input = """
