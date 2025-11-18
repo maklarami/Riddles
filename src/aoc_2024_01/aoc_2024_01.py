@@ -6,8 +6,9 @@ def main_numpy(input: str) -> int:
     second_list : List[int] = []
 
     for line in input.splitlines():
-        first_list.append(int(line[0]))
-        second_list.append(int(line[-1]))
+        numbers = line.split("   ")
+        first_list.append(int(numbers[0]))
+        second_list.append(int(numbers[1]))
 
     first_list.sort()
     second_list.sort()
@@ -24,10 +25,14 @@ def main_list(input: str) -> int:
     second_list : List[int] = []
 
     for line in input.splitlines():
-        first_list.append(int(line[0]))
-        second_list.append(int(line[-1]))
+        numbers = line.split("   ")
+        first_list.append(int(numbers[0]))
+        second_list.append(int(numbers[1]))
 
-    return abs(sum([a - b for a,b in zip(first_list, second_list)]))
+    first_list.sort()
+    second_list.sort()
+
+    return sum([abs(a - b) for a,b in zip(first_list, second_list)])
 
 
 if __name__ == "__main__":
