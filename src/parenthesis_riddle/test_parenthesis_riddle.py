@@ -1,4 +1,4 @@
-from src.parenthesis_riddle import main
+from .parenthesis_riddle import main
 
 def test_main():
     test_dictionary : dict = {
