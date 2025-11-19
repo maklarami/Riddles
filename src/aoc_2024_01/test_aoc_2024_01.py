@@ -1,4 +1,4 @@
-from .aoc_2024_01 import main_list, main_numpy
+from .aoc_2024_01 import main_list, main_numpy, main_similarity
 
 list : str = """3   4
 4   3
@@ -12,6 +12,9 @@ def test_main_list():
 
 def test_main_numpy():
     assert main_numpy(list) == 11
+
+def test_similarity():
+    assert main_similarity(list) == 31
 
 real_list : str = """39687   54930
 86219   31559
@@ -1014,6 +1017,17 @@ real_list : str = """39687   54930
 10029   95431
 85400   15291"""
 
-def test_riddle():
-    print(main_list(real_list))
-    assert main_list(real_list) == 1651298
+def test_riddle1():
+    result = main_list(real_list)
+    print(result)
+    assert result == 1651298
+
+def test_riddle2():
+    result = main_numpy(real_list)
+    print(result)
+    assert result == 1651298
+
+def test_riddle3():
+    result = main_similarity(real_list)
+    print(result)
+    assert result == 21306195
