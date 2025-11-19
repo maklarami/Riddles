@@ -1,5 +1,5 @@
 class Report:
-    def __init__(self, input: str):
+    def __init__(self, input : str):
         string_list = input.split(" ")
         self.report = [int(s) for s in string_list]
 
