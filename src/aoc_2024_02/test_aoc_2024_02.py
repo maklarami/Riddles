@@ -1,16 +1,31 @@
 from .aoc_2024_02 import main
 
-def test_aoc_solution():
-    input1 = """7 6 4 2 1
+input1 = """7 6 4 2 1
 1 2 7 8 9
 9 7 6 2 1
 1 3 2 4 5
 8 6 4 4 1
 1 3 6 7 9"""
-    assert main(input1) == 2
 
-def test_aoc_real():
-    input2 = """19 21 24 27 24
+def test_no_dampener():
+    assert main(input1, False) == 2
+
+def test_dampener():
+    assert main(input1, True) == 4
+
+def test_tricky():
+    tricky_input = """7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9
+1 2 2 3 4
+1 3 3 3 4
+7 5 6 5 6"""
+    assert main(tricky_input, True) == 5
+
+input2 = """19 21 24 27 24
 85 87 89 92 93 96 98 98
 2 5 6 7 8 12
 63 66 69 72 75 82
@@ -1011,5 +1026,12 @@ def test_aoc_real():
 64 66 69 71 72 73 75
 39 37 35 32 29 27 24"""
 
-    print(main(input2))
-    assert main(input2) == 407
+def test_no_dampener_real():
+    result = main(input2, False)
+    print(result)
+    assert result == 407
+
+def test_dampener_real():
+    result = main(input2, True)
+    print(result)
+    assert result == 459
