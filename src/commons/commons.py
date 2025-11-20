@@ -19,14 +19,14 @@ def import_input(YEAR : str, DAY : str) -> str | None:
                 f.write(input_data)
 
         except requests.exceptions.HTTPError as e:
-            print(f"❌ HTTP Error: {e}")
+            print(f"HTTP Error: {e}")
             print("Double-check your SESSION_COOKIE, YEAR, and DAY values.")
 
         except requests.exceptions.RequestException as e:
-            print(f"❌ An error occurred: {e}")
+            print(f"An error occurred: {e}")
 
         except OSError as e:
-            print(f"❌ OS Error: {e}")
+            print(f"OS Error: {e}")
 
     else:
         try:
@@ -34,6 +34,6 @@ def import_input(YEAR : str, DAY : str) -> str | None:
                 input_data = f.read()
 
         except OSError as e:
-            print(f"❌ OS Error: {e}")
+            print(f"OS Error: {e}")
 
     return input_data
