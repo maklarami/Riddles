@@ -5,6 +5,7 @@ description = "Solving varouis programming riddles for fun"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "numpy>=2.3.5",
     "pytest>=8.4.2",
     "requests>=2.32.5",
 ]
