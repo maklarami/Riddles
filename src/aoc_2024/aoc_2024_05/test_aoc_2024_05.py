@@ -40,14 +40,14 @@ def test_part_2_example():
     assert solve_part_2(example) == 123
 
 def test_part_1_input():
-    input = import_input(YEAR=YEAR, DAY=DAY)
+    input = import_input(year=YEAR, day=DAY)
 
     result = solve_part_1(input)
     print(f"Part 1 result: {result}")
     assert result == 3608
 
 def test_part_2_input():
-    input = import_input(YEAR=YEAR, DAY=DAY)
+    input = import_input(year=YEAR, day=DAY)
 
     result = solve_part_2(input)
     print(f"Part 2 result: {result}")

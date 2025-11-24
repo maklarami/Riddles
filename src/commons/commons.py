@@ -13,10 +13,13 @@ def get_aoc_input_path(year : int, day : int) -> str:
     return pathlib.Path() / "input" / f"aoc_{year}"
 
 def import_input(year : int, day : int) -> str | None:
-    path =  get_aoc_input_path(year, day) / f"aoc_{year}_{day:02d}_input.txt"
-    input_data = None
+    path =  get_aoc_input_path(year, day)
+    file =  path / f"aoc_{year}_{day:02d}_input.txt"
 
-    if not path.exists():
+    if not file.exists():
+        if not path.exists():
+            pathlib.Path.mkdir(path, parents=True, exist_ok=True)
+        
         url =  get_aoc_url(year, day) + "/input"
         cookies = {'session': session_cookie}
 

@@ -22,11 +22,11 @@ def test_example_part2():
     assert part2(example) == 9
 
 def test_input_part1():
-    input = import_input(YEAR=YEAR, DAY=DAY)
+    input = import_input(year=YEAR, day=DAY)
 
     assert part1(input) == 2551
 
 def test_input_part2():
-    input = import_input(YEAR=YEAR, DAY=DAY)
+    input = import_input(year=YEAR, day=DAY)
 
     assert part2(input) == 1985

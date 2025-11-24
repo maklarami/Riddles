@@ -17,7 +17,7 @@ def test_main_numpy():
 def test_similarity():
     assert main_similarity(list) == 31
 
-real_list = import_input(YEAR="2024", DAY="1")
+real_list = import_input(year=2024, day=1)
 
 def test_riddle1():
     result = main_list(real_list)
