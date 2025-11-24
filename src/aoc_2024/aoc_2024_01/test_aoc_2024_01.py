@@ -1,4 +1,4 @@
-from ...commons.commons import import_input
+from src.utils.commons import import_input
 from .aoc_2024_01 import main_list, main_numpy, main_similarity
 
 list : str = """3   4

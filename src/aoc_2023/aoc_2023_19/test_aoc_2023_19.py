@@ -1,4 +1,4 @@
-from src.commons.commons import import_input
+from src.utils.commons import import_input
 from .aoc_2023_19 import main
 
 def test_example():

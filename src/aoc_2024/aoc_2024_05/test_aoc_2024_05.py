@@ -1,4 +1,4 @@
-from ...commons.commons import import_input
+from src.utils.commons import import_input
 from .aoc_2024_05 import solve_part_1, solve_part_2
 
 DAY = 5

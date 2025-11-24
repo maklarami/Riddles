@@ -1,4 +1,4 @@
-from ...commons.commons import import_input
+from src.utils.commons import import_input
 from .aoc_2024_04 import part1, part2
 
 DAY = 4
