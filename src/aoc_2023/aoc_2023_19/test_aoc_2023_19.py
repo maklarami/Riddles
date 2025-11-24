@@ -1,7 +1,8 @@
+from src.commons.commons import import_input
 from .aoc_2023_19 import main
 
-def test_main():
-    input = """
+def test_example():
+    example = """
 px{a<2006:qkq,m>2090:A,rfg}
 pv{a>1716:R,A}
 lnx{m>1548:A,A}
@@ -20,4 +21,8 @@ hdj{m>838:A,pv}
 {x=2461,m=1339,a=466,s=291}
 {x=2127,m=1623,a=2188,s=1013}"""
 
-    assert main(input) == 19114
+    assert main(example) == 19114
+
+def test_input():
+    input = import_input(2023, 19)
+    assert main(input) == 476889
