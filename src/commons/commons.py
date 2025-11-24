@@ -1,14 +1,23 @@
 import pathlib
 import requests
 
+session_cookie = "53616c7465645f5f94c0f974ea29e8964ec9e4222e1b5614105a5b78b57f1f7868d0bc93f0942f23c725e3433e1315c4c6a9d1ce3997a4f20aa400ad6b414001"
 
-def import_input(YEAR : str, DAY : str) -> str | None:
-    path = pathlib.Path() / f"input/aoc_{YEAR}_day{DAY}_input.txt"
+def get_aoc_url(year : int, day : int) -> str:
+    return f"https://adventofcode.com/{year}/day/{day}"
+
+def get_aoc_code_path(year : int, day : int) -> str:
+    return pathlib.Path() / "src" / f"aoc_{year}" / f"aoc_{year}_{day:02d}"
+
+def get_aoc_input_path(year : int, day : int) -> str:
+    return pathlib.Path() / "input" / f"aoc_{year}"
+
+def import_input(year : int, day : int) -> str | None:
+    path =  get_aoc_input_path(year, day) / f"aoc_{year}_{day:02d}_input.txt"
     input_data = None
 
     if not path.exists():
-        url = f"https://adventofcode.com/{YEAR}/day/{DAY}/input"
-        session_cookie = "53616c7465645f5f94c0f974ea29e8964ec9e4222e1b5614105a5b78b57f1f7868d0bc93f0942f23c725e3433e1315c4c6a9d1ce3997a4f20aa400ad6b414001"
+        url =  get_aoc_url(year, day) + "/input"
         cookies = {'session': session_cookie}
 
         try:
