@@ -35,6 +35,15 @@ def fetch_input(path, file, url) -> str | None:
 
     return input_data
 
+def permutations_iter(elements, length: int):
+    for i in range(len(elements)):
+        if length == 1:
+                yield (elements[i],)
+        else:
+            for next in permutations_iter(elements, length -1):
+                yield (elements[i], ) + next
+    pass
+
 def import_input(year : int, day : int) -> str | None:
     path =  get_aoc_input_path(year, day)
     file =  path / f"aoc_{year}_{day:02d}_input.txt"
