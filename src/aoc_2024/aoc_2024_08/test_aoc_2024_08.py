@@ -25,7 +25,7 @@ def test_part_1_example():
 
 def test_part_2_example():
     # Change 0 to the expected answer
-    assert solve_part_2(example) == 0
+    assert solve_part_2(example) == 34
 
 def test_part_1_input():
     input = import_input(year=YEAR, day=DAY)
@@ -39,6 +39,5 @@ def test_part_2_input():
 
     result = solve_part_2(input)
     print(f"Part 2 result: {result}")
-    # Change 0 to the expected answer when ready
-    assert result == 0
+    assert result == 1019
 

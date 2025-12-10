@@ -1,13 +1,18 @@
 # Advent of Code 2024 - Day 08 solution
+from enum import Enum
 import itertools
 import numpy as np
+
+class NodeCalculationModel(Enum):
+    PART_1 = "part_1"
+    PART_2 = "part_2"
 
 class Layer:
     def __init__(self, antenas: list[np.array]):
         self.antenas = antenas
         self.map = None
 
-    def calculate_nodes(self) -> set:
+    def calculate_nodes_model_1(self) -> set:
         nodes : set[tuple[int, int]] = set()
         for (first, second) in itertools.combinations(self.antenas, 2):
             distance = second - first
@@ -17,6 +22,25 @@ class Layer:
             node2 = first - distance
             if self.map.is_within_map(node2):
                 nodes.add(tuple(node2))
+        return nodes
+    
+    def calculate_nodes_model_2(self) -> set:
+        nodes : set[tuple[int, int]] = set()
+        for (first, second) in itertools.combinations(self.antenas, 2):
+            nodes.add(tuple(second))
+            nodes.add(tuple(first))
+            distance = second - first
+
+            node = second + distance
+            while self.map.is_within_map(node):
+                nodes.add(tuple(node))
+                node += distance
+
+            node = first - distance
+            while self.map.is_within_map(node):
+                nodes.add(tuple(node))
+                node -= distance
+
         return nodes
 
 class Map:
@@ -34,12 +58,24 @@ class Map:
             return True
         return False
     
-    def calculate_nodes(self):
+    def calculate_nodes(self, model: NodeCalculationModel):
         for layer in self.layers:
-            self.nodes |= layer.calculate_nodes()
+            if model == NodeCalculationModel.PART_1:
+                self.nodes |= layer.calculate_nodes_model_1()
+            elif model == NodeCalculationModel.PART_2:
+                self.nodes |= layer.calculate_nodes_model_2()
+            else:
+                raise ValueError(f"Unknown model: {model}")
+            
+    def plot_nodes(self) -> str:
+        grid = np.full(self.size, '.')
 
+        for node in self.nodes:
+            grid[node] = 'X'
 
-def solve_part_1(input : str) -> int:
+        return '\n'.join(''.join(row) for row in grid)
+
+def create_map(input : str) -> Map:
     chars = {}
     antenna_locations : list[tuple[int, int]] = []
     i = 0
@@ -61,13 +97,19 @@ def solve_part_1(input : str) -> int:
     for antenna_set in antenna_locations:
         map.add_layer(Layer(antenna_set))
 
-    map.calculate_nodes()
+    return map
+
+def solve_part_1(input : str) -> int:
+    map = create_map(input)
+    map.calculate_nodes(NodeCalculationModel.PART_1)
 
     return len(map.nodes)
 
 def solve_part_2(input : str) -> int:
-    # Add your Part 2 solution logic here
-    return 0
+    map = create_map(input)
+    map.calculate_nodes(NodeCalculationModel.PART_2)
+    print(map.plot_nodes())
+    return len(map.nodes)
 
 if __name__ == "__main__":
     pass
