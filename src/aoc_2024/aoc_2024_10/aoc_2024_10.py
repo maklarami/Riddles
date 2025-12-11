@@ -60,7 +60,7 @@ def solve_part_1(input : str) -> int:
     for trailhead in trailheads:
         paths = [[trailhead]]
         peaks = set()
-        while paths:
+        for _ in range(10):
             paths, peaks = map.find_path_step((paths, peaks))
         scores.append(len(peaks))
     
@@ -69,15 +69,15 @@ def solve_part_1(input : str) -> int:
 def solve_part_2(input : str) -> int:
     map = Map(input)
     trailheads = map.find_positions(0)
-    rating = []
+    scores = []
     for trailhead in trailheads:
         paths = [[trailhead]]
         peaks = set()
         for _ in range(10):
             paths, peaks = map.find_path_step((paths, peaks))
-        rating.append(len(paths))
+        scores.append(len(paths))
     
-    return sum(rating)
+    return sum(scores)
 
 if __name__ == "__main__":
     print(solve_part_2("""0123
