@@ -147,45 +147,44 @@ class Filesystem:
         return checksum
     
     def compact_part2(self):
-        """Compact filesystem by moving whole files only (right to left)"""
-        filesystem = self.filesystem  # Local reference (faster)
+        checksum = 0
+        leftmost_gap = 0
         
-        # Get list of files (id, start, end) by scanning right to left
-        files = []
-        i = len(filesystem) - 1
-        while i >= 0:
-            if filesystem[i] != ".":
-                file_id = filesystem[i]
-                file_end = i
-                while i >= 0 and filesystem[i] == file_id:
-                    i -= 1
-                file_start = i + 1
-                files.append((file_id, file_start, file_end))
-            else:
-                i -= 1
-        
-        # Try to move each file (they're already in reverse order)
-        for file_id, file_start, file_end in files:
-            file_size = file_end - file_start + 1
-            
-            # Find first gap large enough (left to right)
-            i = 0
-            while i < file_start:
-                if filesystem[i] == ".":
-                    gap_start = i
-                    while i < file_start and filesystem[i] == ".":
-                        i += 1
-                    gap_size = i - gap_start
-                    
-                    # If gap is large enough, move the file
-                    if gap_size >= file_size:
-                        # Move file to gap
-                        filesystem[gap_start:gap_start+file_size] = [file_id] * file_size
-                        # Clear original position
-                        filesystem[file_start:file_end+1] = ["."] * file_size
-                        break
+        right = len(self.filesystem) -1
+
+        while leftmost_gap <= right:
+            left = leftmost_gap
+            while self.filesystem[right] == ".":
+                right -=1
+            file_id = self.filesystem[right]
+            file_end = right
+            while self.filesystem[right] == file_id:
+                right -=1
+            file_start = right + 1
+            file_size = file_end - file_start +1
+
+            updated_flag = False
+            while left <= right:
+                if self.filesystem[left] != ".":
+                    checksum += left * self.filesystem[left]
+                    left +=1
                 else:
-                    i += 1
+                    if updated_flag == False:
+                        leftmost_gap = left
+                        updated_flag = True
+                    gap_start = left
+                    left +=1
+                    while self.filesystem[left] == ".":
+                        left += 1
+                    gap_end = left -1
+                    gap_size = gap_end - gap_start + 1
+
+                    if gap_size >= file_size:
+                        for i in range(gap_start, gap_start+file_size):
+                            self.filesystem[i] = file_id
+                        for i in range(file_start, file_end+1):
+                            self.filesystem[i] = "."
+                        break
 
 def checksum_part2(filesystem: list[int | str]) -> int:
     checksum = 0
@@ -228,6 +227,7 @@ def solve_part_2_indexing(input : str) -> int:
     checksum = filesystem.checksum_from_index()
 
     return checksum
+
 
 if __name__ == "__main__":
     pass
