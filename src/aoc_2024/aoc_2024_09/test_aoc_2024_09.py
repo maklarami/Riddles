@@ -1,7 +1,7 @@
 # Tests for Advent of Code 2024 - Day 09
 from time import time
 from src.utils.commons import import_input
-from src.aoc_2024.aoc_2024_09.aoc_2024_09 import solve_part_1, solve_part_1_indexing, solve_part_2
+from src.aoc_2024.aoc_2024_09.aoc_2024_09 import solve_part_1, solve_part_1_indexing, solve_part_2, solve_part_2_indexing
 
 YEAR = 2024
 DAY = 9
@@ -39,6 +39,11 @@ def test_part_2_input():
     # Change 0 to the expected answer when ready
     assert result == 6390781891880
 
+def test_part_2_indexing_input():
+    result = solve_part_2_indexing(input)
+    # Change 0 to the expected answer when ready
+    assert result == 6390781891880
+
 def test_performance_part1(benchmark):
     result = benchmark(solve_part_1, input)
     assert result == 6367087064415
@@ -49,4 +54,8 @@ def test_performance_part1_indexing(benchmark):
 
 def test_performance_part2(benchmark):
     result = benchmark(solve_part_2, input)
+    assert result == 6390781891880
+
+def test_performance_part2_indexing(benchmark):
+    result = benchmark(solve_part_2_indexing, input)
     assert result == 6390781891880
