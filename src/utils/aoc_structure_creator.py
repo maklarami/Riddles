@@ -45,28 +45,24 @@ def create_aoc_structure(year: int, day: int) -> None:
             example = "Example data for testing" 
 
             def test_part_1_example():
-                # Change 0 to the expected answer
-                assert solve_part_1(example) == 0
+                assert solve_part_1(example) == 0   # Change 0 to the expected answer
 
             def test_part_2_example():
-                # Change 0 to the expected answer
-                assert solve_part_2(example) == 0
+                assert solve_part_2(example) == 0   # Change 0 to the expected answer
 
             def test_part_1_input():
                 input = import_input(year=YEAR, day=DAY)
 
                 result = solve_part_1(input)
                 print(f"Part 1 result: {{result}}")
-                # Change 0 to the expected answer when ready
-                assert result == 0 
+                assert result == 0                  # Change 0 to the expected answer when ready
 
             def test_part_2_input():
                 input = import_input(year=YEAR, day=DAY)
 
                 result = solve_part_2(input)
                 print(f"Part 2 result: {{result}}")
-                # Change 0 to the expected answer when ready
-                assert result == 0
+                assert result == 0                  # Change 0 to the expected answer when ready
 
             """)
         with open(test_file, 'w') as tf:
@@ -78,6 +74,6 @@ def create_aoc_structure(year: int, day: int) -> None:
     print(code_path)
 
 if __name__ == "__main__":
-    DAY = 6
+    DAY = 12
     YEAR = 2024
     create_aoc_structure(YEAR, DAY)
