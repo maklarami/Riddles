@@ -10,33 +10,6 @@ class Region:
         self.fencesNS = set()
         self.fencesEW = set()
 
-    def count_fences(self) -> int:
-        value = 0
-
-        value += self._count_fences_of_type("NS")
-        value += self._count_fences_of_type("EW")
-
-        return value
-    
-    def _count_fences_of_type(self, direction) -> int:
-        value = 0
-        if direction == "NS":
-            fences = sorted(self.fencesNS)
-        elif direction == "EW":
-            fences = sorted(self.fencesEW)
-        previous_i = None
-        previous_j = None
-        for (i, j) in fences:
-            if i == previous_i and j == previous_j +1:
-                    pass
-            else:
-                value += 1
-
-            previous_i = i
-            previous_j = j
-        print(f"There are {value} of region fences {direction}: {fences}")
-        return value
-
     def count_corners(self) -> int:
         corners = 0
         while self.fencesEW or self.fencesNS:
@@ -103,7 +76,7 @@ class Map:
         self.width = len(self.map[0])
         self.visited = [[False for _ in range(self.width)] for _ in range(self.height)]
     
-    def check_neighbour(self, region, row, col, dr, dc, region_type) -> True:
+    def check_neighbour(self, region, row, col, dr, dc, region_type) -> bool:
             new_row = row + dr
             new_col = col + dc
             is_perimeter = False
@@ -160,11 +133,8 @@ def solve_part_2(input : str) -> int:
         for col in range(map.width):
             if not map.visited[row][col]:
                 region = map.explore_region(row, col, map.map[row][col])
-                print(f"New region type {region.type}, size {region.area}, perimeter {region.perimeter}")
-                print(f"Fences EW: {region.fencesEW}\nFences NS: {region.fencesNS}")
                 corners =region.count_corners()
                 value += corners * region.area
-                print(f"Region has {corners} corners")
 
                 
     return value
