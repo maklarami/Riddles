@@ -35,6 +35,5 @@ def test_part_2_input():
 
     result = solve_part_2(input)
     print(f"Part 2 result: {result}")
-    # Change 0 to the expected answer when ready
-    assert result == 0
+    assert result == 978590
 
