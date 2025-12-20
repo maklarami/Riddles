@@ -12,7 +12,7 @@ def get_aoc_input_path(year : int, day : int) -> str:
     return pathlib.Path() / "src" / "input" / f"aoc_{year}"
 
 def fetch_input(path, file, url) -> str | None:
-    session_cookie = "53616c7465645f5f94c0f974ea29e8964ec9e4222e1b5614105a5b78b57f1f7868d0bc93f0942f23c725e3433e1315c4c6a9d1ce3997a4f20aa400ad6b414001"
+    session_cookie = "53616c7465645f5fde600dfcffa65a86fcb9c30fb7340728a958dc5183dc97e1bb50211a0e348e5c97f0a10a361f115974d239fc602c711123009af02ccd188d"
     input_data = ""
 
     pathlib.Path.mkdir(path, parents=True, exist_ok=True)

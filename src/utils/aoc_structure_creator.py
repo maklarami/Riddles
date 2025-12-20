@@ -74,6 +74,6 @@ def create_aoc_structure(year: int, day: int) -> None:
     print(code_path)
 
 if __name__ == "__main__":
-    DAY = 12
-    YEAR = 2024
+    DAY = 2
+    YEAR = 2025
     create_aoc_structure(YEAR, DAY)
