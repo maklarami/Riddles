@@ -12,7 +12,7 @@ def test_part_1_example():
     assert solve_part_1(example) == 1227775554   # Change 0 to the expected answer
 
 def test_part_2_example():
-    assert solve_part_2(example) == 0   # Change 0 to the expected answer
+    assert solve_part_2(example) == 4174379265   # Change 0 to the expected answer
 
 def test_part_1_input():
     input = import_input(year=YEAR, day=DAY)
